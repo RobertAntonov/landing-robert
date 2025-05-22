@@ -1,0 +1,19 @@
+/* src/sidebar.css */
+
+.sidebar-link {
+  color: #fff;
+  font-size: 18px;
+  margin-bottom: 8px;
+  display: block;
+  transition: 
+    color 0.2s cubic-bezier(.66,-0.01,.32,1.01), 
+    transform 0.2s cubic-bezier(.66,-0.01,.32,1.01);
+  text-decoration: none;
+  padding-left: 0;
+}
+
+.sidebar-link:hover {
+  color: #ff4d88;           /* Sau orice accent vrei tu (roz, portocaliu, etc) */
+  transform: translateX(8px);  /* Mută 8px la dreapta */
+  padding-left: 0;
+}

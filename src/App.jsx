@@ -1,3 +1,4 @@
+import Sidebar from "./components/Sidebar";
 import Hero from "./components/Hero";
 import About from "./components/About";
 import ThemeToggle from "./components/ThemeToggle";
@@ -8,6 +9,7 @@ const App = () => {
       <ThemeToggle />
       <Hero />
       <About />
+      <Sidebar />
     </div>
   );
 };
