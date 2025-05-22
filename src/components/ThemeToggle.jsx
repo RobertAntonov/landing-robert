@@ -1,27 +1,55 @@
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
+import { Moon, Sun } from 'phosphor-react';
 
 const ThemeToggle = () => {
-  const [theme, setTheme] = useState('light');
+  const getInitialTheme = () =>
+    typeof window !== "undefined" && localStorage.getItem("theme")
+      ? localStorage.getItem("theme")
+      : "light";
+
+  const [theme, setTheme] = useState(getInitialTheme);
+  const [icon, setIcon] = useState(getInitialTheme);
+  const [clicked, setClicked] = useState(false);
+  const [hovered, setHovered] = useState(false);
 
   useEffect(() => {
-    const saved = localStorage.getItem('theme') || 'light';
-    setTheme(saved);
-    document.documentElement.classList.toggle('dark', saved === 'dark');
-  }, []);
+    document.documentElement.classList.remove("light", "dark");
+    document.documentElement.classList.add(theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
 
   const toggleTheme = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light';
-    setTheme(newTheme);
-    document.documentElement.classList.toggle('dark', newTheme === 'dark');
-    localStorage.setItem('theme', newTheme);
+    setClicked(true);
+    setTimeout(() => {
+      const newTheme = theme === "light" ? "dark" : "light";
+      setTheme(newTheme);
+      setIcon(newTheme);
+      setClicked(false);
+    }, 300);
+  };
+
+  const getDuration = () => {
+    if (clicked) return "0.3s";
+    if (hovered) return "2.5s";
+    return "12s";
   };
 
   return (
     <button
       onClick={toggleTheme}
-      className="fixed top-4 right-4 z-50 bg-neutral-800 text-white dark:bg-white dark:text-black px-4 py-2 rounded shadow border"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      aria-label="Toggle theme"
+      className={`
+        fixed top-4 right-4 z-50 text-black dark:text-white text-4xl p-2
+        transition-transform ease-out animate-spin
+        ${hovered && !clicked ? "scale-110" : ""}
+      `}
+      style={{
+        animationDuration: getDuration()
+      }}
     >
-      {theme === 'light' ? '🌙' : '☀️'}
+      {icon === "light" ? <Sun size={40} weight="fill" /> : <Moon size={40} weight="fill" />}
     </button>
   );
 };
