@@ -18,10 +18,15 @@
   padding-left: 0;
 }
 
+.work-container {
+  display: inline-block;
+  position: relative;
+}
+
 .work-submenu {
   position: absolute;
   top: 0;
-  left: 60px;
+  left: 100%;
   display: flex;
   flex-direction: column;
 }
