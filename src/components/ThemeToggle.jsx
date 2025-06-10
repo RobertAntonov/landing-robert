@@ -7,8 +7,9 @@ const ThemeToggle = () => {
       ? localStorage.getItem("theme")
       : "light";
 
-  const [theme, setTheme] = useState(getInitialTheme);
-  const [icon, setIcon] = useState(getInitialTheme);
+  // Use lazy initialization to avoid storing the initializer function itself
+  const [theme, setTheme] = useState(() => getInitialTheme());
+  const [icon, setIcon] = useState(() => getInitialTheme());
   const [clicked, setClicked] = useState(false);
   const [hovered, setHovered] = useState(false);
 
