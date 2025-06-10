@@ -31,7 +31,11 @@ export default function Sidebar() {
           work
         </a>
         {showWorkMenu && (
-          <div className="work-submenu">
+          <div
+            className="work-submenu"
+            onMouseEnter={() => setShowWorkMenu(true)}
+            onMouseLeave={() => setShowWorkMenu(false)}
+          >
             <a href="/studio" className="sidebar-sublink">
               studio
             </a>
