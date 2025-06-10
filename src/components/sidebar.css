@@ -17,3 +17,23 @@
   transform: translateX(8px);  /* Mută 8px la dreapta */
   padding-left: 0;
 }
+
+.work-submenu {
+  position: absolute;
+  top: 0;
+  left: 60px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-sublink {
+  color: #fff;
+  font-size: 16px;
+  margin-bottom: 6px;
+  text-decoration: none;
+  transition: color 0.2s cubic-bezier(.66,-0.01,.32,1.01);
+}
+
+.sidebar-sublink:hover {
+  color: #ff4d88;
+}
